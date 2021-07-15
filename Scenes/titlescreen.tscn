@@ -1,0 +1,82 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sprites/start button.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/dog.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/tofu the game.png" type="Texture" id=3]
+[ext_resource path="res://Music/Its_me_Tofu_Chan.wav" type="AudioStream" id=4]
+[ext_resource path="res://Sprites/discorb.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/discorb2.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/start button2.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/titlescreen.gd" type="Script" id=8]
+
+[sub_resource type="Animation" id=1]
+resource_name = "logo"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0, 0.0 ]
+}
+
+[node name="Title Screen" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_left = 30.9855
+margin_top = 53.1757
+margin_right = 158.986
+margin_bottom = 117.176
+rect_rotation = 2.97174
+rect_scale = Vector2( 5, 5 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect"]
+autoplay = "logo"
+anims/logo = SubResource( 1 )
+
+[node name="Start Button" type="TextureButton" parent="."]
+margin_left = 29.6133
+margin_top = 400.134
+margin_right = 339.613
+margin_bottom = 555.134
+rect_rotation = 6.39555
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 1 )
+texture_hover = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Discord Link" type="TextureButton" parent="."]
+margin_top = 624.0
+margin_right = 104.0
+margin_bottom = 728.0
+texture_normal = ExtResource( 5 )
+texture_hover = ExtResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tofu Chan" type="Sprite" parent="."]
+position = Vector2( 968, 480 )
+scale = Vector2( 13.4989, 13.4989 )
+texture = ExtResource( 2 )
+
+[node name="Konichiwa" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+[connection signal="pressed" from="Start Button" to="." method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="Discord Link" to="." method="_on_TextureButton3_pressed"]
